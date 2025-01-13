@@ -1,7 +1,0 @@
-[console_scripts]
-amr_control_node = expo_bot.amr_control_node:main
-cctv_detection_node = expo_bot.cctv_detection_node:main
-object_detection_node = expo_bot.object_detection_node:main
-sys_monitor_node = expo_bot.sys_monitor_node:main
-video_playback_node = expo_bot.video_playback_node:main
-
