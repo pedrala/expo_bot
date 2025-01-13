@@ -52,7 +52,7 @@ class SysMonitorNode(Node):
         self.latest_frame2 = None
 
         # SQLite3 데이터베이스 초기화
-        self.conn = sqlite3.connect('detected_objects.db', check_same_thread=False)
+        self.conn = sqlite3.connect('asset/detected_objects.db', check_same_thread=False)
         self.cursor = self.conn.cursor()
         self.initialize_database()
 
