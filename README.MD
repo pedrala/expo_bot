@@ -1,6 +1,6 @@
 ## Description
 
-컨벤션센터의 CCTV에서 구독받은 이미지를 Flask를 통해 웹화면에 보여주고 시스템 모니터 노드에서는 YOLO 객체인식을 처리합니다. 화면의 바운딩박스안에 3명 이상이 모였다고 판단한 순간 목표좌표를 AMR 봇에게 전달하면 AMR봇은 해당위치로 이동합니다. 이동중 카메라의 이미지를 구독받아 웹화면에 디스플레이합니다.
+The images subscribed to from the CCTV of the convention center are processed by YOLO object recognition, and the compressed images and object information are sent to the system monitor node. When three or more people are detected in the bounding box of the screen, the images are captured and saved. The system monitor saves the subscribed object information in the database and displays it on the web screen along with the compressed real-time images through Flask. In addition, the target coordinates of the turtle bot are sent to the AMR bot node so that the AMR bot moves to the corresponding location. During movement, the images of the camera are subscribed to and displayed on the web screen.
 
 ## Demo
 
@@ -9,7 +9,7 @@
 </p>
 
 
-## 패키지 빌드
+## Package Build
 
 ```console
 cd ~/chob3_ws
@@ -18,27 +18,29 @@ colcon build --packages-select expo_bot
 
 source install/setup.bash
 ```
-## 실행하는 순서
+## How to execute
 
-### 1.cctv yolo 객체 인식 시작, 이미지 압축하여 발행, 객체인식한 정보 발행
+### 1.CCTV yolo object recognition starts, compresses the image and issues it, and issues object recognition information.
 
 ```console
 ros2 run expo_bot cctv_detection_node cctv.pt 
 ```
 
-### 2. 모니터링 시스템에서 cctv이미지영상, 로봇캠 영상 구독받아 디스플레이, 목표좌표 퍼블리쉬, 구독받은 객체정보 DB 에 저장
+### 2. In the monitoring system, CCTV video images, robot cam video images are displayed, target coordinates are published, and subscribed object information is stored in the DB.
 
 ```console
 ros2 run expo_bot sys_monitor_node  
 ```
 
-### 3. AMR봇 자체 좌표 및 영상 토픽으로 발행 (AMR 에 원격 접속하여 해당폴더로 이동하여 실행할 것)
+### 3. Publish AMR bot's coordinates(Odometry) and video images as a topic 
+(remotely connect to Turtlebot, move to the folder, and run)
 
 ```console
 ros2 run expo_bot amr_control_node 
 ```
 
-### 4. 위치 초기화, 목표좌표(JSON))와 AMR봇좌표를 구독받고  목표좌표로 네비게이션 (AMR 에 원격 접속하여 해당폴더로 이동하여 실행할 것)
+### 4. Initialize location(Init Pose), subscribe to target coordinates and AMR bot coordinates and navigate to the target coordinates 
+(remotely connect to Turtlebot, move to the folder, and run)
 
 ```console
 ros2 run expo_bot navigate_to_goal_node 
