@@ -5,7 +5,7 @@ The images subscribed to from the CCTV of the convention center are processed by
 ## Demo
 
 <p align="center">
-  <img src="capture/expobot_demo.png" alt="expobot_demo" width="1000">
+  <img src="asset/expobot_demo.png" alt="expobot_demo" width="1000">
 </p>
 
 
